@@ -9,15 +9,32 @@ STAGE = 'PART'
 base_link = 'https://prezenta.roaep.ro/locale09062024/'
 
 #judete = lib.judete
-judete = ['b']
+
+off_l =  25 # minimum allowed difference
+off_h = 175 # maximum allowed difference
+city = 's1' # can be s2 or bv
+
+if city == 's1':
+  judete = ['b']
+  pno_b = 1
+  pno_e = 166
+elif city == 's2':
+  judete = ['b']
+  pno_b = 167
+  pno_e = 368
+elif city == 'bv':
+  judete = ['bv']
+  pno_b = 1
+  pno_e = 188
 
 ADU = 'ALIANȚA DREAPTA UNITĂ USR - PMP - FORȚA DREPTEI'
+UPB = 'ALIANȚA UNIȚI PENTRU BRAȘOV'
 PSDNL = 'ALIANȚA ELECTORALĂ PSD PNL'
 PSD = 'PARTIDUL SOCIAL DEMOCRAT'
 PNL = 'PARTIDUL NAȚIONAL LIBERAL'
 
 results = {}
-for x in range(1, 1290):
+for x in range(1, 2000):
   results[x] = {'judet': '', 'sectia': 0, 'votes_P': {}, 'votes_CL': {}}
 
 for judet in judete:
@@ -32,21 +49,23 @@ for judet in judete:
       usr = 0
       psd = 0
       for vote in precinct['votes']:
+        party = vote['party']
+        cnddt = vote['candidate']
         count = int(vote['votes'])
         if mode == 'P':
-          if vote['party'] == ADU:
+          if party == ADU or party == UPB:
             usr = count
-          elif vote['party'] == PSDNL:
+          elif party == PSDNL:
             psd = count
         elif mode == 'CL':
-          if vote['candidate'] == ADU:
+          if cnddt == ADU or cnddt == UPB:
             usr = count
-          elif vote['candidate'] == PSDNL:
+          elif cnddt == PSDNL:
             psd = count
         elif mode == 'CJ':
-          if vote['candidate'] == ADU:
+          if cnddt == ADU:
             usr = count
-          elif vote['candidate'] == PNL or vote['candidate'] == PSD:
+          elif cnddt == PNL or cnddt == PSD:
             psd += count
 
       pno = int(precinct['precinct_nr'])
@@ -60,12 +79,9 @@ for judet in judete:
     #sys.exit(0)
   #sys.exit(0)
 
-# sector_1:   1 -> 166
-# sector_2: 167 -> 368
 for pno in results:
-  #if pno >= 1 and pno <= 166:
-  if pno >= 167 and pno <= 368:
-    # sectia 56 nu este uploadata
+  if pno >= pno_b and pno <= pno_e:
+    # sectia 56 nu este uploadata (in s1)
     if 'usr' in results[pno]['votes_P']:
       p_usr = results[pno]['votes_P']['usr']
       p_psd = results[pno]['votes_P']['psd']
@@ -74,7 +90,7 @@ for pno in results:
       if cl_usr > 0 and cl_psd > 0:
         pc_usr = round(p_usr / cl_usr * 100, 2)
         pc_psd = round(p_psd / cl_psd * 100, 2)
-        if pc_usr < 50 or pc_usr > 150 or pc_psd < 50 or pc_psd > 150:
+        if pc_usr < off_l or pc_usr > off_h or pc_psd < off_l or pc_psd > off_h:
           print("sectia[%d] ratio (P/CL): USR[%d/%d = %d%%] PSD[%d/%d = %d%%]" % (pno, p_usr, cl_usr, pc_usr, p_psd, cl_psd, pc_psd))
       else:
         print("Zero pe CL: USR[%d/%d] PSD[%d/%d]" % (p_usr, cl_usr, p_psd, cl_psd))
