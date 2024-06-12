@@ -8,7 +8,9 @@ fname = 'db/pv_%s_part.json'
 STAGE = 'PART'
 base_link = 'https://prezenta.roaep.ro/locale09062024/'
 
-for judet in lib.judete:
+judete = lib.judete
+
+for judet in judete:
   f = open((fname % judet))
   data = json.load(f)
 
@@ -18,16 +20,16 @@ for judet in lib.judete:
     for table_id in entries:
       precinct = entries[table_id]
       #print(precinct)
-      for nr in precinct["fields"]:
-        if nr['name'] == "b":
+      for nr in precinct['fields']:
+        if nr['name'] == 'b':
           b = int(nr['value'])
-        if nr['name'] == "c":
+        if nr['name'] == 'c':
           c = int(nr['value'])
-        if nr['name'] == "d":
+        if nr['name'] == 'd':
           d = int(nr['value'])
-        if nr['name'] == "e":
+        if nr['name'] == 'e':
           e = int(nr['value'])
-        if nr['name'] == "f":
+        if nr['name'] == 'f':
           f = int(nr['value'])
 
       expected = c+d+f
@@ -46,7 +48,7 @@ for judet in lib.judete:
                   version = fv
                   flink = base_link + fdata['url']
 
-        fmt = ("%d, %d, %d, %d, %d, %d, %s, %s, %s, %s" % (dif, b, c, d, e, f, precinct['county_code'], precinct['precinct_nr'], mode, flink))
+        fmt = ('%d, %d, %d, %d, %d, %d, %s, %s, %s, %s' % (dif, b, c, d, e, f, precinct['county_code'], precinct['precinct_nr'], mode, flink))
         print(fmt)
         #sys.exit(0)
 
