@@ -1,0 +1,10 @@
+locale:
+
+#12 bucuresti - consiliu local: 15 vs 190 = hartie vs pdf
+#31 bucuresti - primar - pdf vs tableta: 195 usr
+#42 bucuresti - primar - 18 buletine lipsa - USR refuza sa semneze
+#144 bucuresti - primar - 190 voturi lipsa
+#352 bucuresti - primar - boghiu > mihaiu
+
+euro:
+#282 ilfov - REPER 0
