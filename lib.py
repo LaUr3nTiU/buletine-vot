@@ -1,0 +1,1 @@
+judete = ['ab', 'ag', 'ar', 'b', 'bc', 'bh', 'bn', 'br', 'bt', 'bv', 'bz', 'cj', 'cl', 'cs', 'ct', 'cv', 'db', 'dj', 'gj', 'gl', 'gr', 'hd', 'hr', 'if', 'il', 'is', 'mh', 'mm', 'ms', 'nt', 'ot', 'ph', 'sb', 'sj', 'sm', 'sv', 'tl', 'tm', 'tr', 'vl', 'vn', 'vs']
