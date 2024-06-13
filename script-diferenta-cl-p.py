@@ -4,7 +4,7 @@ import lib
 
 modes = ['P', 'CL', 'CJ']
 
-fname = 'db/pv_%s_part.json'
+fname = 'db/locale/pv_%s_part.json'
 STAGE = 'PART'
 base_link = 'https://prezenta.roaep.ro/locale09062024/'
 
@@ -12,7 +12,7 @@ base_link = 'https://prezenta.roaep.ro/locale09062024/'
 
 off_l =  25 # minimum allowed difference
 off_h = 175 # maximum allowed difference
-city = 's1' # can be s2 or bv
+city = 'bv' # can be s2 or bv
 
 if city == 's1':
   judete = ['b']

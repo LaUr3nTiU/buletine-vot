@@ -11,7 +11,7 @@ headers = {
 payload = {}
 
 for judet in lib.judete:
-    fname = ('db/pv_%s_part.json' % judet)
+    fname = ('db/locale/pv_%s_part.json' % judet)
     ts = 1718198089213
     link = ('https://prezenta.roaep.ro/locale09062024/data/json/sicpv/pv/pv_%s_part.json?_=%d' % (judet, ts))
 

@@ -4,7 +4,7 @@ import lib
 
 modes = ['P', 'CL', 'CJ', 'PCJ']
 
-fname = 'db/pv_%s_part.json'
+fname = 'db/locale/pv_%s_part.json'
 STAGE = 'PART'
 base_link = 'https://prezenta.roaep.ro/locale09062024/'
 
